@@ -69,7 +69,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
 static const Layout layouts[] = {
@@ -245,11 +245,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_F3,		spawn,		SHCMD("td-toggle") },
 	{ MODKEY,			XK_F4,		spawn,		SHCMD(TERMINAL " -e pulsemixer; kill -37 $(pidof dwmblocks)") },
 	{ MODKEY,                       XK_F5,     	spawn,          SHCMD("st -e sb-syncmail") },
-	{ MODKEY|ShiftMask,             XK_F5,     	spawn,          SHCMD("st -e rpimail_up") },
+/*	{ MODKEY|ShiftMask,             XK_F5,     	spawn,          SHCMD("toggle_rpi") },*/
+	{ MODKEY|ShiftMask,             XK_F5,     	spawn,          SHCMD("toggle_sbx") },
 	{ MODKEY,                       XK_F6,     	spawn,          SHCMD("st -e sb-syncrss") },
 	{ MODKEY,                       XK_F7,     	spawn,          SHCMD("st -e sb-upgrade") },
 /*	{ MODKEY,                       XK_F8,     	spawn,          SHCMD("st -e forecast_up sync") },
 	{ MODKEY|ShiftMask,             XK_F8,     	spawn,          SHCMD("doppler_up") },*/
+	{ MODKEY,			XK_F8,		xrdb,		{.v = NULL } },
 	{ MODKEY,                       XK_F9,     	spawn,          SHCMD("dmenumount") },
 	{ MODKEY,                       XK_F10,    	spawn,          SHCMD("dmenuumount") },
 	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --autofit=30\% --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:$(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
@@ -270,8 +272,8 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer -d 3; kill -37 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
 	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next") },
-	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc pause") },
-	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc play") },
+	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc toggle") },
+	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
 	{ 0, XF86XK_AudioStop,		spawn,		SHCMD("mpc stop") },
 	{ 0, XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10") },
 	{ 0, XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
