@@ -145,7 +145,7 @@ static Key keys[] = {
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
 	/* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
-	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
+	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuemoji") },
 	/* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
 	TAGKEYS(			XK_1,		0)
 	TAGKEYS(			XK_2,		1)
@@ -169,7 +169,8 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_q,		killclient,	{0} },
 	{ MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("sysact") },
-	{ MODKEY,			XK_w,		spawn,		SHCMD("web_query") },
+/*	{ MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") },*/
+	{ MODKEY,			XK_w,		spawn,		SHCMD("web_bookmark") },
 	{ MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD("web_search") },
 	{ MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; kill -42 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
@@ -222,7 +223,7 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("") }, */
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,			XK_b,		togglebar,	{0} },
-	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
+	{ MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("bookmark") },
 	{ MODKEY,			XK_n,		spawn,		SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD(TERMINAL " sfeed_curses $HOME/.config/sfeed/feeds/*; kill -41 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_m,		spawn,		SHCMD(TERMINAL " -e ncmpcpp") },
@@ -241,12 +242,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Up,	shifttag,	{ .i = -1 } },
 	{ MODKEY,			XK_Page_Down,	shiftview,	{ .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Down,	shifttag,	{ .i = +1 } },
+	{ MODKEY, 			XK_Insert,	spawn,		SHCMD("xdotool type $(grep -v '^#' ~/.local/share/snippets | dmenu -i -l 50 | cut -d' ' -f1)")  },
+	{ MODKEY,			XK_F1,		spawn,		SHCMD("groff -mom ~/.local/share/manual.mom -Tpdf | zathura -") },
 	{ MODKEY,			XK_F3,		spawn,		SHCMD("torwrap") },
 	{ MODKEY|ShiftMask,		XK_F3,		spawn,		SHCMD("td-toggle") },
 	{ MODKEY,			XK_F4,		spawn,		SHCMD(TERMINAL " -e pulsemixer; kill -37 $(pidof dwmblocks)") },
 	{ MODKEY,                       XK_F5,     	spawn,          SHCMD("st -e sb-syncmail") },
 /*	{ MODKEY|ShiftMask,             XK_F5,     	spawn,          SHCMD("toggle_rpi") },*/
-	{ MODKEY|ShiftMask,             XK_F5,     	spawn,          SHCMD("toggle_sbx") },
+	{ MODKEY|ShiftMask,             XK_F5,     	spawn,          SHCMD("vpn_toggle") },
 	{ MODKEY,                       XK_F6,     	spawn,          SHCMD("st -e sb-syncrss") },
 	{ MODKEY,                       XK_F7,     	spawn,          SHCMD("st -e sb-upgrade") },
 /*	{ MODKEY,                       XK_F8,     	spawn,          SHCMD("st -e forecast_up sync") },
